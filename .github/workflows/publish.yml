@@ -1,7 +1,5 @@
 name: Publish to nuget.org
 on:
-  release:
-    types: [published]
   workflow_dispatch:  # Allows manual triggering
 jobs:
   build:
