@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: sdk/extensions/Azure.Extensions.AspNetCore.Configuration.Secrets
+        working-directory: sdk/extensions/Azure.Extensions.AspNetCore.Configuration.Secrets/src
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET 8.0.x
@@ -21,3 +21,4 @@ jobs:
         run: dotnet build --configuration Release --no-restore
       - name: Run tests
         run: dotnet test --no-restore --verbosity normal
+        working-directory: sdk/extensions/Azure.Extensions.AspNetCore.Configuration.Secrets/tests
