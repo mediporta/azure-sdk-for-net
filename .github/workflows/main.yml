@@ -19,6 +19,9 @@ jobs:
         run: dotnet restore
       - name: Build solution
         run: dotnet build --configuration Release --no-restore
+      - name: Restore dependencies [Tests]
+        run: dotnet restore
+        working-directory: sdk/extensions/Azure.Extensions.AspNetCore.Configuration.Secrets/tests
       - name: Run tests
         run: dotnet test --no-restore --verbosity normal
         working-directory: sdk/extensions/Azure.Extensions.AspNetCore.Configuration.Secrets/tests
