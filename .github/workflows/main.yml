@@ -13,11 +13,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-      - name: Display current working directory
-      - run: |
-          echo ${{ github.workspace }}
-          echo $GITHUB_WORKSPACE
-          echo $PWD
       - name: Restore dependencies
         run: dotnet restore
       - name: Build solution
