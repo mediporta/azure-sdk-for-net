@@ -24,17 +24,17 @@ namespace Azure.Extensions.AspNetCore.Configuration.Secrets
             _tasks = new List<Task<Response<KeyVaultSecret>>>();
         }
 
-        public void AddSecretToLoad(string secretName)
+        public void AddSecretToLoad(string name, string version)
         {
-            _tasks.Add(Task.Run(() => GetSecretAsync(secretName)));
+            _tasks.Add(Task.Run(() => GetSecretAsync(name, version)));
         }
 
-        private async Task<Response<KeyVaultSecret>> GetSecretAsync(string secretName)
+        private async Task<Response<KeyVaultSecret>> GetSecretAsync(string name, string version)
         {
             await _semaphore.WaitAsync().ConfigureAwait(false);
             try
             {
-                return await _client.GetSecretAsync(secretName).ConfigureAwait(false);
+                return await _client.GetSecretAsync(name, version).ConfigureAwait(false);
             }
             finally
             {

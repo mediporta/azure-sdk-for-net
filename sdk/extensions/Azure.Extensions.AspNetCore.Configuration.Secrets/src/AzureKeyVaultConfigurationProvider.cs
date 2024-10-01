@@ -91,7 +91,7 @@ namespace Azure.Extensions.AspNetCore.Configuration.Secrets
             }
             else
             {
-                secretLoader.AddSecretToLoad(secret.Name);
+                secretLoader.AddSecretToLoad(secretId, _manager.GetVersion(secret));
             }
         }
 
