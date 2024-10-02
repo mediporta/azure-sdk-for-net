@@ -73,5 +73,15 @@ namespace Azure.Extensions.AspNetCore.Configuration.Secrets
         {
             return true;
         }
+
+        /// <summary>
+        /// Gets the version of the secret to use.
+        /// </summary>
+        /// <param name="secret">The <see cref="SecretProperties"/> instance.</param>
+        /// <returns><code>null</code> if should use current version, otherwise <code>string</code> with given one.</returns>
+        public virtual string GetVersion(SecretProperties secret)
+        {
+            return secret.Version;
+        }
     }
 }

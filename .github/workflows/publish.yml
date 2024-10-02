@@ -1,0 +1,23 @@
+name: Publish to nuget.org
+on:
+  release:
+    # https://stackoverflow.com/questions/59319281/github-action-different-between-release-created-and-published
+    # We use release.published because it is triggered when publishing directly and publishing from a draft
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sdk/extensions/Azure.Extensions.AspNetCore.Configuration.Secrets/src
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build solution
+        run: dotnet build --configuration Release --no-restore
+      - name: Publish package
+        run: dotnet nuget push **.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_AUTH_TOKEN }}
