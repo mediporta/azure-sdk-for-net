@@ -1,6 +1,8 @@
 name: Publish to nuget.org
 on:
   release:
+    # https://stackoverflow.com/questions/59319281/github-action-different-between-release-created-and-published
+    # We use release.published because it is triggered when publishing directly and publishing from a draft
     types: [published]
 jobs:
   build:
